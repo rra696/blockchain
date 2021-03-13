@@ -10,9 +10,10 @@ Today I have implemented minimal working blockchain and it will be possible I wi
  
  **Instruction for running:**
  1. Clone this project
- 2. Run *composer install*
- 3. Run *php artisan generate:blockchain_with_genesis_block*
- 4. Run *php -S localhost:8000 -t public*
+ 2. Create .env file following the existing env.example 
+ 3. Run *composer install*
+ 4. Run *php artisan generate:blockchain_with_genesis_block*
+ 5. Run *php -S localhost:8000 -t public*
  
  *Endpoints:*
  * **GET /blockchain/show** - returns a chain of blocks in json format 
