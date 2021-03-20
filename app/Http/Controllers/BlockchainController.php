@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\Block\BlockService;
+use App\Services\Chain\ChainHydrator;
 use App\Services\Chain\ChainService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -12,15 +13,17 @@ class BlockchainController extends Controller
 {
     private ChainService $chainService;
     private BlockService $blockService;
+    private ChainHydrator $chainHydrator;
 
     /**
      * @param ChainService $chainService
      * @param BlockService $blockService
      */
-    public function __construct(ChainService $chainService, BlockService $blockService)
+    public function __construct(ChainService $chainService, BlockService $blockService, ChainHydrator $chainHydrator)
     {
         $this->chainService = $chainService;
         $this->blockService = $blockService;
+        $this->chainHydrator = $chainHydrator;
     }
 
     /**
@@ -44,8 +47,9 @@ class BlockchainController extends Controller
     public function show(): JsonResponse
     {
         $curChain = $this->chainService->getCurrentCain();
+        $chain = $this->chainHydrator->extract($curChain);
 
-        return response()->json(['blocks' => $curChain->getBlocks()]);
+        return response()->json(['chain' => $chain]);
     }
 
 }
