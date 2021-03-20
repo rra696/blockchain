@@ -6,11 +6,11 @@ namespace App\Entity;
 
 class Block
 {
-    public int $index;
-    public string $hash;
-    public string $previousHash;
-    public int $timestamp;
-    public string $data;
+    private int $index;
+    private string $hash;
+    private string $previousHash;
+    private int $timestamp;
+    private string $data;
 
     /**
      * @param int $index
